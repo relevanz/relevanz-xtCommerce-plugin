@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <code>xt_releva_nz</code>
+    <version>1.6.0</version>
+    <type>marketing</type>
+    <developer>xt:Commerce</developer>
+    <url>https://www.releva.nz</url>
+    <marketplace_link><![CDATA[https://releva.nz/produktloesung/xtcommerce-retargeting-plugin]]></marketplace_link>
+    <documentation_link><![CDATA[https://help.releva.nz/de/xtcommerce-installation]]></documentation_link>
+	<doc_links>
+		<doc_link>
+			<key>xt_releva_nz</key>
+			<url>https://releva.nz/xt-commerce-plugin/</url>
+			<type>acl_nav</type>
+		</doc_link>
+	</doc_links>
+    <title>releva.nz Integration für xt:Commerce Shops</title>
+    <icon>relevanz_.png</icon>
+    <db_install><![CDATA[
+        require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_releva_nz/hooks/db_install.php';
+    ]]></db_install>
+    <db_uninstall><![CDATA[
+        require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_releva_nz/hooks/db_uninstall.php';
+    ]]></db_uninstall>
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT.'plugins/xt_releva_nz/hooks/page_registry_php_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>index_footer_tpl</hook>
+            <phpcode>
+                <![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_releva_nz/hooks/index_footer_tpl.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.xt_cart_popup.php:add_product_bottom</hook>
+            <phpcode>
+                <![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_releva_nz/hooks/class.xt_cart_popup.php_add_product_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:add_product_bottom</hook>
+            <phpcode>
+                <![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_releva_nz/hooks/form_handler.php_add_product_bottom.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.plugin.php:setPluginConfig</hook>
+            <phpcode>
+                <![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_releva_nz/hooks/class.plugin.php_setPluginConfig.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.export.php:__extractData_category</hook>
+            <phpcode>
+                <![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_releva_nz/hooks/class.export.php__extractData_category.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>XT_RNZ_ACTIVATE</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Für Mandant aktivieren</title>
+            </de>
+            <en>
+                <title>activate for this store</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RNZ_USER_ID_CAMP_ID</key>
+            <value></value>
+            <de>
+                <title>User ID/Campaign-ID</title>
+            </de>
+            <en>
+                <title>User ID/Campaign-ID</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RNZ_API_KEY</key>
+            <value></value>
+            <de>
+                <title>API Key</title>
+            </de>
+            <en>
+                <title>API Key</title>
+            </en>
+        </config>
+    </configuration>
+    <language_content>
+        <phrase>
+            <key>XT_RNZ</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[releva.nz]]></value>
+            </en>
+            <de>
+                <value><![CDATA[releva.nz]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_RELEVA_NZ</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[releva.nz - Overview]]></value>
+            </en>
+            <de>
+                <value><![CDATA[releva.nz - Übersicht]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_RELEVA_NZ_SELECT_ID</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[select Tracking-ID:]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Tracking-ID auswählen:]]></value>
+            </de>
+        </phrase>
+    </language_content>
+</xtcommerceplugin>
