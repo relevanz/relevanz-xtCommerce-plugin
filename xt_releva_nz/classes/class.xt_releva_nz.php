@@ -22,9 +22,9 @@ class xt_releva_nz {
          * Percentage discounts will be applied, "fixed amount" discounts not
          * */
         $code = '';
-        $code .= '<script src = "https://d.hyj.mobi/conv?cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'&orderId='.$success_order->order_data['orders_id'].'&amount='.$total_net.'&products='.implode(',',$products_list).'" ></script>';
+        $code .= 'https://d.hyj.mobi/conv?cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'&orderId='.$success_order->order_data['orders_id'].'&amount='.$total_net.'&products='.implode(',',$products_list);
         // produkte demarkieren nach conversion
-        $code .= '<script src = "https://pix.hyj.mobi/rt?t=d&action=t&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'&products='.implode(',',$products_list).'" async="async" ></script>';
+        $code .= 'https://pix.hyj.mobi/rt?t=d&action=t&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'&products='.implode(',',$products_list);
 
 		return $code;
 	}

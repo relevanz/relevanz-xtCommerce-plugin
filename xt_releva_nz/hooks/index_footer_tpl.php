@@ -15,7 +15,7 @@ if(isset($xtPlugin->active_modules['xt_releva_nz']) && XT_RNZ_ACTIVATE =='true')
         $customer_str = '';
 
     if(isset($_SESSION['xt_releva_nz_product_added'])){
-        $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=w&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$_SESSION['xt_releva_nz_product_pid'].$customer_str.'" async="async"></script>';
+        $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=w&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$_SESSION['xt_releva_nz_product_pid'].$customer_str;
         unset($_SESSION['xt_releva_nz_product_added']);
         unset($_SESSION['xt_releva_nz_product_pid']);
     }
@@ -23,26 +23,26 @@ if(isset($xtPlugin->active_modules['xt_releva_nz']) && XT_RNZ_ACTIVATE =='true')
     switch ($page->page_name) {
         case 'manufacturers ':
 // manufacturere ID
-            $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=c&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id=m_'.$current_manufacturer_id.$customer_str.'" async="async" ></script>';
+            $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=c&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id=m_'.$current_manufacturer_id.$customer_str;
             break;
         case 'categorie':
 // CATEGORY_ID
-            $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=c&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$current_category_id.$customer_str.'" async="async" ></script>';
+            $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=c&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$current_category_id.$customer_str;
             break;
         case 'product':
 // PRODUCT_ID
-            $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=p&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$current_product_id.$customer_str.'" async="async" ></script>';
+            $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=p&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).'&id='.$current_product_id.$customer_str;
             break;
         case 'checkout':
             if ( $page->page_action == 'success') {
                 $tpl_data['script'] = $rnz->_getConversionCode($customer_str);
             }else{
-                $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=s&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'" async="async" ></script>';
+                $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=s&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str;
             }
             break;
 
         default:
-            $tpl_data['script'] = '<script src = "https://pix.hyj.mobi/rt?t=d&action=s&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str.'" async="async" ></script>';
+            $tpl_data['script'] = 'https://pix.hyj.mobi/rt?t=d&action=s&cid='.trim(XT_RNZ_USER_ID_CAMP_ID).$customer_str;
 
             break;
     }

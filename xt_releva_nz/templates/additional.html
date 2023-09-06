@@ -1,5 +1,11 @@
-{$script}
-
-<script type=”text/javascript>
-addRelevanzRetargetingJS();
+<div id="relevanz_tag"></div>
+<script type="text/javascript">
+    (function() {
+        var sct = document.createElement('script');
+        sct.src = "{$script}";
+        sct.type = 'text/javascript';
+        sct.async = 'true';
+        var domel = document.getElementById('relevanz_tag');
+        domel.appendChild(sct);
+    })();
 </script>
