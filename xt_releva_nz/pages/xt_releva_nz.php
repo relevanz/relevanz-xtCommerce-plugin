@@ -1,14 +1,4 @@
 <?php
-
-if($_GET['seckey'] != _SYSTEM_SECURITY_KEY){
-
-    $xtLink->_redirect($xtLink->_link(array('page'=>'index')));
-
-}
-
-    $display_output = false;
-    global $db;
-
 $record = $db->execute('SELECT DISTINCT  `config_value` FROM `' . DB_PREFIX . '_config_plugin` WHERE `config_key` LIKE "XT_RNZ_API_KEY"');
 if ($record->RecordCount() >= 1) {
     while (!$record->EOF) {
@@ -20,6 +10,48 @@ if ($record->RecordCount() >= 1) {
     $record->Close();
 }
 
+if($_GET['seckey'] != _SYSTEM_SECURITY_KEY){
+    // valid authentication for server info?
+    $apikey = $menu[0];
+    $campaignId = XT_RNZ_USER_ID_CAMP_ID;
+    $key = md5($apikey.':'.$campaignId);
+
+    if($_GET['auth'] != $key) {
+        $xtLink->_redirect($xtLink->_link(array('page'=>'index')));
+    }
+
+    require _SRV_WEBROOT . 'plugins/xt_releva_nz/classes/class.xt_releva_nz.php';
+    $rnz = new xt_releva_nz;
+
+    $serverinfo = $rnz->getServerEnvironment();
+
+    $data = array(
+        "plugin-version" => "1.6.4",
+        "shop" => array(
+            "version" => _SYSTEM_VERSION,
+            "system" => 'xtcommerce',
+        ),
+        "environment" => array(
+            "server-software" => $serverinfo['server-software'],
+            "php" => $serverinfo['php'],
+        ),
+        "callbacks" => array(
+            "callback" => array(
+                "url"=> 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']
+            ),
+            "export" => array(
+                "url"=> 'https://' . $_SERVER['SERVER_NAME'] . '/export/releva_nz.csv'
+            )
+        )
+    );
+    $display_output = false;
+    header('Content-Type: application/json; charset=UTF-8');
+    print json_encode($data);
+    return;
+}
+
+    $display_output = false;
+    global $db;
 
     ?>
 

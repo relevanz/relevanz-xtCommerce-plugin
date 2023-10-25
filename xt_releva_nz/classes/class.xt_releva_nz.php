@@ -30,5 +30,19 @@ class xt_releva_nz {
 		return $code;
 	}
 
+    function getPhpVersion() {
+        return [
+            'version' => phpversion(),
+            'sapi-name' => php_sapi_name(),
+            'memory-limit' => ini_get('memory_limit'),
+            'max-execution-time' => ini_get('max_execution_time'),
+        ];
+    }
 
+    function getServerEnvironment() {
+        return [
+            'server-software' => isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : null,
+            'php' => $this->getPhpVersion()
+        ];
+    }
 }
